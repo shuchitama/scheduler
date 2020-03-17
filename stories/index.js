@@ -6,11 +6,14 @@ import DayListItem from "../src/components/DayListItem"
 import DayList from "../src/components/DayList"
 import InterviewerListItem from "../src/components/InterviewerListItem"
 import InterviewerList from "../src/components/InterviewerList"
+import Button from "components/Button";
+import Appointment from "components/Appointment/index";
+import Header from "components/Appointment/Header";
+
+
 import "components/Appointment/index";
 import "index.scss";
 
-import Button from "components/Button";
-import Appointment from "components/Appointment/index";
 
 storiesOf("Button", module)
   .addParameters({
@@ -140,4 +143,5 @@ storiesOf("Appointment", module)
     <Appointment
       time="12pm"
     />
-  );
+  )
+  .add("Header", () => <Header time="12pm" />)
