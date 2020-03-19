@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./Header";
 import Empty from "./Empty";
 import Show from "./Show";
+import useVisualMode from "../../hooks/useVisualMode";
 
 import './styles.scss';
 
