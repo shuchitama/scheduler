@@ -9,6 +9,7 @@ import './styles.scss';
 
 
 export default function Appointment(props) {
+
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
@@ -30,7 +31,7 @@ export default function Appointment(props) {
       {mode === CREATE && (
         <Form
           name={props.name}
-          interviewers={[]}
+          interviewers={props.interviewers}
           interviewer={props.interviewer}
           // onSave={action("onSave")}
           onCancel={back}
