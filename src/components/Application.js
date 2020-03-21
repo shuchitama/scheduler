@@ -20,6 +20,10 @@ export default function Application(props) {
 
   const appointments = getAppointmentsForDay(state, state.day)
   const interviewers = getInterviewersForDay(state, state.day)
+  const bookInterview = function (id, interview) {
+    console.log("id: ", id);
+    console.log("interview: ", interview);
+  }
   const schedule = appointments.map(item => {
     const interview = getInterview(state, item.interview)
 
@@ -29,9 +33,11 @@ export default function Application(props) {
         {...item}
         interview={interview}
         interviewers={interviewers}
+        bookInterview={bookInterview}
       />
     )
   });
+
 
   useEffect(() => {
     const promise1 = axios.get("/api/days");
@@ -74,7 +80,7 @@ export default function Application(props) {
       </section>
       <section className="schedule">
         {schedule}
-        <Appointment key="last" time="5pm" />
+        <Appointment key="last" time="5pm" bookInterview={bookInterview} />
       </section>
     </main>
   );
