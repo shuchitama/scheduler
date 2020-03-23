@@ -10,16 +10,47 @@ export default function useApplicationData() {
   });
 
   const setDay = day => setState(prev => ({ ...prev, day }));
-
+  const indexOfDay = function (id) {
+    let index = null;
+    switch (true) {
+      case id <= 5: index = 0
+        break;
+      case id <= 10: index = 1
+        break;
+      case id <= 15: index = 2
+        break;
+      case id <= 20: index = 3
+        break;
+      case id <= 25: index = 4
+        break;
+      default: id = null;
+    }
+    return index;
+  }
+  const spotsLeft = function (appts) {
+    let count = 0;
+    for (const item in appts) {
+      if (appts[item].interview === null) {
+        count++;
+      }
+    }
+    return count;
+  }
 
   const bookInterview = function (id, interview) {
+    let days = state.days
+      .map(
+        element => element.id === indexOfDay(id)
+          ? { ...element, spots: spotsLeft(appointments) }
+          : element);
+
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
     };
     const appointments = {
       ...state.appointments,
-      [id]: appointment
+      [id]: appointment,
     };
 
     return (
@@ -27,13 +58,15 @@ export default function useApplicationData() {
         .then(() => {
           setState({
             ...state,
-            appointments
+            appointments,
+            days
           })
         })
     )
   };
 
   const cancelInterview = function (id) {
+
     const appointment = {
       ...state.appointments[id],
       interview: null
@@ -42,12 +75,20 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment
     };
+
+    let days = state.days
+      .map(
+        element => element.id === indexOfDay(id)
+          ? { ...element, spots: spotsLeft(appointments) }
+          : element);
+
     return (
       axios.delete(`/api/appointments/${id}`)
         .then(() => {
           setState({
             ...state,
-            appointments
+            appointments,
+            days
           })
         })
     )
