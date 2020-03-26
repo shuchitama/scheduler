@@ -16,7 +16,18 @@ To run the app, use the following commands:
 
 ## Screenshots
 
+### Main page
+
 !["Main page"](https://github.com/shuchitama/scheduler/blob/master/docs/main_view.png?raw=true)
+
+### Creating a new appointment
+
 !["Creating a new appointment"](https://github.com/shuchitama/scheduler/blob/master/docs/book.gif?raw=true)
+
+### Editing an existing appointment
+
 !["Editing an appointment"](https://github.com/shuchitama/scheduler/blob/master/docs/edit.gif?raw=true)
+
+### Deleting an appointment
+
 !["Deleting an appointment"](https://github.com/shuchitama/scheduler/blob/master/docs/delete.gif?raw=true)
