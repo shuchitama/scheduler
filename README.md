@@ -4,15 +4,9 @@ A single page app that allows a user to book, edit, or cancel interviews with an
 
 ## Setup
 
-The database used to run this app is accessed from this repository: https://github.com/shuchitama/scheduler-api.
+The database used to run this app is accessed from this URL: https://scheduler-lhl-shuchita.herokuapp.com/
 
-To run the app, use the following commands:
-
-- To run the API server, type `npm start` from inside the scheduler-api directory
-- Install dependencies with `npm install`
-- To run the Webpack Development Server, type `npm start`
-- To run the Jest Test Framework, type `npm test`
-- To run the Storybook Visual Testbed, type `npm run storybook`
+To run the app, go to https://agitated-curie-ea22fe.netlify.app/
 
 ## Screenshots
 
