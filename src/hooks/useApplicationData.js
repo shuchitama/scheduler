@@ -7,14 +7,14 @@ export default function useApplicationData() {
     day: "Monday",
     days: [],
     appointments: {},
-    interviewers: {}
+    interviewers: {},
   });
 
-  const setDay = day => setState(prev => ({ ...prev, day }));
+  const setDay = (day) => setState((prev) => ({ ...prev, day }));
 
-  const bookInterview = function(id, interview) {
+  const bookInterview = function (id, interview) {
     // check if an existing appointment is being edited or a new one is being created
-    const editing = function() {
+    const editing = function () {
       if (state.appointments[id].interview === null) {
         return false;
       } else {
@@ -23,7 +23,7 @@ export default function useApplicationData() {
     };
 
     // spots left should not change if an appointment is being edited, but should change if a new one is being created
-    const spotsLeft = function(appts) {
+    const spotsLeft = function (appts) {
       let count = 0;
       for (const item in appts) {
         if (appts[item].interview === null) {
@@ -40,26 +40,26 @@ export default function useApplicationData() {
     // update the current appointment object to reflect new appointment data
     const appointment = {
       ...state.appointments[id],
-      interview: { ...interview }
+      interview: { ...interview },
     };
 
     // update the entire appointments object with new appointment data
     const appointments = {
       ...state.appointments,
-      [id]: appointment
+      [id]: appointment,
     };
 
-    const activeDay = state.days.find(day => {
-      return (day.name = state.day);
+    const activeDay = state.days.find((day) => {
+      return day.name === state.day;
     });
     const daysAppts = getAppointmentsForDay(state, activeDay.name);
     const numSpots = spotsLeft(daysAppts);
 
     const updatedDay = {
       ...activeDay,
-      spots: numSpots
+      spots: numSpots,
     };
-    const updatedDays = state.days.map(day => {
+    const updatedDays = state.days.map((day) => {
       if (day.name === updatedDay.name) {
         return updatedDay;
       }
@@ -69,29 +69,29 @@ export default function useApplicationData() {
       setState({
         ...state,
         appointments,
-        days: updatedDays
+        days: updatedDays,
       });
     });
   };
 
-  const cancelInterview = function(id) {
+  const cancelInterview = function (id) {
     const appointment = {
       ...state.appointments[id],
-      interview: null
+      interview: null,
     };
     const appointments = {
       ...state.appointments,
-      [id]: appointment
+      [id]: appointment,
     };
 
-    const activeDay = state.days.find(day => {
-      return (day.name = state.day);
+    const activeDay = state.days.find((day) => {
+      return day.name === state.day;
     });
     const updatedDay = {
       ...activeDay,
-      spots: activeDay.spots + 1
+      spots: activeDay.spots + 1,
     };
-    const updatedDays = state.days.map(day => {
+    const updatedDays = state.days.map((day) => {
       if (day.name === updatedDay.name) {
         return updatedDay;
       }
@@ -102,7 +102,7 @@ export default function useApplicationData() {
       setState({
         ...state,
         appointments,
-        days: updatedDays
+        days: updatedDays,
       });
     });
   };
@@ -111,12 +111,12 @@ export default function useApplicationData() {
     const promise1 = axios.get("/api/days");
     const promise2 = axios.get("/api/appointments");
     const promise3 = axios.get("/api/interviewers");
-    Promise.all([promise1, promise2, promise3]).then(all => {
-      setState(prev => ({
+    Promise.all([promise1, promise2, promise3]).then((all) => {
+      setState((prev) => ({
         ...prev,
         days: all[0].data,
         appointments: all[1].data,
-        interviewers: all[2].data
+        interviewers: all[2].data,
       }));
     });
   }, []);
