@@ -4,9 +4,12 @@ A single page app that allows a user to book, edit, or cancel interviews with an
 
 ## Setup
 
-The database used to run this app is accessed from this URL: https://scheduler-lhl-shuchita.herokuapp.com/
+The API used to run this app is accessed from this URL: https://scheduler-shuchita.herokuapp.com, and has the following endpoints:
+- /api/days
+- /api/appointments
+- /api/interviewers
 
-To run the app, go to https://agitated-curie-ea22fe.netlify.app/
+To run the app, go to https://interview-scheduler-shuchita.netlify.app/
 
 ## Screenshots
 
